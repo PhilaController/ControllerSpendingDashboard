@@ -64,7 +64,7 @@ export default {
 }
 
 #app h2 {
-  margin-bottom: 0.25rem;
+  margin-bottom: 0.5rem;
   margin-top: 1rem;
 }
 

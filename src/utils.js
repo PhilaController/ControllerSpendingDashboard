@@ -4,7 +4,7 @@ import { csv } from "d3-fetch"
 function getDownloadURL(kind) {
 
     let FILE_TAG;
-    if (process.env.VUE_APP_SODA_MODE === 'staging') {
+    if (process.env.VUE_APP_DATA_MODE === 'staging') {
         FILE_TAG = "-staging";
     } else {
         FILE_TAG = "";
@@ -23,11 +23,11 @@ async function fetchAWS(kind) {
     }
 }
 
-async function fetchLatestRelease(filetag) {
+async function fetchLatestRelease() {
 
     let endpoint = "https://controller-expenditures-public.s3.amazonaws.com/"
     let FILE_TAG;
-    if (process.env.VUE_APP_SODA_MODE === 'staging') {
+    if (process.env.VUE_APP_DATA_MODE === 'staging') {
         FILE_TAG = "-staging";
     } else {
         FILE_TAG = "";
