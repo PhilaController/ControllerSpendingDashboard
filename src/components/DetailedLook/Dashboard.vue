@@ -79,13 +79,16 @@
             <v-data-table
               :headers="mainTableHeaders"
               :items="filteredData"
-              :items-per-page="15"
               sort-by="Amount"
               :sort-desc="true"
               must-sort
               class="main-data-table"
               :search="search"
               mobile-breakpoint="0"
+              :page.sync="page"
+              :items-per-page="itemsPerPage"
+              hide-default-footer
+              @page-count="pageCount = $event"
             >
               <template #top>
                 <v-row
@@ -126,6 +129,20 @@
               <template #item.Amount="{ item }">
                 <span>{{ formatTotal(item.Amount) }}</span>
               </template>
+
+              <!-- Custom pagination -->
+              <template #footer="{ props }">
+                <div class="text-center pt-2 pb-2">
+                  <h4 id="pagination">All Expenditures Pagination</h4>
+                  <v-pagination
+                    v-model="page"
+                    :length="pageCount"
+                    :total-visible="6"
+                    aria-labelledby="pagination"
+                    color="#2176d2"
+                  />
+                </div>
+              </template>
             </v-data-table>
           </div>
         </div>
@@ -148,6 +165,9 @@ export default {
   },
   data() {
     return {
+      page: 1,
+      pageCount: 0,
+      itemsPerPage: 30,
       search: "",
       minAmount: "",
       maxAmount: "",
@@ -259,5 +279,8 @@ export default {
 .v-application--is-ltr .v-data-footer__select {
   margin-left: auto;
   margin-right: 14px;
+}
+#pagination {
+  display: none;
 }
 </style>

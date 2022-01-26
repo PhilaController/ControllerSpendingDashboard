@@ -1,23 +1,19 @@
 <template>
   <v-col cols="12" md="6" class="mt-3">
-    <!-- Sub-header -->
-    <div>
-      <div class="sub-header">Select a fiscal year(s) to view:</div>
-    </div>
-
     <div class="btn-group d-flex flex-column">
       <!-- Fiscal Year button -->
       <v-select
         v-model="selectedFiscalYears"
         :items="fiscalYears"
         class="fiscal-year-dropdown w-100 mt-2"
-        placeholder="Select fiscal years(s)"
+        label="Fiscal Years(s)"
         multiple
         outlined
         dense
         hide-details
         :ripple="false"
         @input="changeSelectedFiscalYears"
+        :menu-props="{ contentClass: 'left-aligned-menu-content' }"
       />
     </div>
   </v-col>

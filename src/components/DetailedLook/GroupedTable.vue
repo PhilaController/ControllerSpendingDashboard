@@ -3,16 +3,31 @@
     :headers="headers"
     :items="groupedData"
     sort-by="value"
-    :items-per-page="itemsPerPage"
     :sort-desc="true"
-    :disable-pagination="groupedData.length <= itemsPerPage"
-    :hide-default-footer="groupedData.length <= itemsPerPage"
+    :disable-pagination="disablePagination"
+    :hide-default-footer="true"
     mobile-breakpoint="0"
     must-sort
     class="grouped-data-table"
+    :page.sync="page"
+    :items-per-page="itemsPerPage"
+    @page-count="pageCount = $event"
   >
     <template #item.value="{ item }">
       <span>{{ formatTotal(item.value) }}</span>
+    </template>
+
+    <template #footer="{ props }" v-if="groupedData.length > itemsPerPage">
+      <div class="text-center pt-2 pb-2">
+        <h4 id="pagination">Table Pagination</h4>
+        <v-pagination
+          v-model="page"
+          :length="pageCount"
+          :total-visible="6"
+          aria-labelledby="pagination"
+          color="#2176d2"
+        />
+      </div>
     </template>
   </v-data-table>
 </template>
@@ -27,9 +42,12 @@ export default {
     groupby: { type: String, default: null },
   },
   data() {
-    return { itemsPerPage: 15 };
+    return { page: 1, pageCount: 0, itemsPerPage: 15 };
   },
   computed: {
+    disablePagination() {
+      return this.groupedData.length <= this.itemsPerPage;
+    },
     headers() {
       return [
         {

@@ -75,14 +75,15 @@ export default {
   padding: 0.5rem;
 }
 
-.v-menu__content {
-  left: 0px !important;
-}
 #startOverlay {
   align-items: flex-start !important;
 }
 
 .titlebar {
   max-width: 200px;
+}
+
+.left-aligned-menu-content {
+  left: 0 !important;
 }
 </style>
