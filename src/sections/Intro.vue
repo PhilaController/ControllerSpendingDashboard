@@ -4,7 +4,7 @@
     <div class="mb-4">
       <p>
         <span class="font-weight-bold">Data Range:</span> January 1, 2018
-        through June 30, {{ fiscal_year }}
+        through June 30, {{ fiscalYear }}
       </p>
     </div>
 
@@ -20,9 +20,9 @@
       </p>
       <p>
         By default, the expenditure data for the most recent fiscal year,
-        ranging from July 1, {{ fiscal_year - 1 }} to June 30,
-        {{ fiscal_year }}, is presented below. Earlier data can be viewed by
-        using the buttons to select the desired fiscal year.
+        ranging from July 1, {{ fiscalYear - 1 }} to June 30, {{ fiscalYear }},
+        is presented below. Earlier data can be viewed by using the buttons to
+        select the desired fiscal year.
       </p>
     </div>
 
@@ -94,7 +94,7 @@ import { sum, rollup } from "d3-array";
 
 export default {
   name: "Intro",
-  props: ["data", "fiscal_year"],
+  props: ["data", "fiscalYear"],
   computed: {
     totalSpending() {
       return sum(this.data, (d) => +d["Amount"]);

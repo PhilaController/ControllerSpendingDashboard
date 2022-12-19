@@ -1,48 +1,31 @@
 <template>
-  <div data-vuetify>
-    <!-- Overlay a lodader -->
-    <v-overlay
-      :value="fiscal_year == null"
-      id="startOverlay"
-      absolute
-      opacity="1"
-      color="#fff"
-    >
-      <v-progress-circular
-        class="mt-5"
-        indeterminate
-        size="64"
-        color="#2176d2"
-      />
-    </v-overlay>
+  <div id="app">
+    <div v-if="fiscalYear !== null && data !== null">
+      <!-- 1. Introduction -->
+      <Intro :data="data" :fiscal-year="fiscalYear" />
 
-    <v-app id="app">
-      <v-main v-if="data !== null">
-        <!-- 1. Introduction -->
-        <Intro :fiscal_year="fiscal_year" :data="data" />
-
-        <!-- 2. Detailed Look -->
-        <DetailedLook :fiscal_year="fiscal_year" :data="data" />
-      </v-main>
-    </v-app>
+      <!-- 2. Detailed Look -->
+      <DetailedLook :data="data" :fiscal-year="fiscalYear" />
+    </div>
+    <div v-else class="loader-wrapper"><span class="loader"></span></div>
   </div>
 </template>
 
 <script>
-import Intro from "@/components/Intro";
-import DetailedLook from "@/components/DetailedLook";
+import Intro from "@/sections/Intro";
+import DetailedLook from "@/sections/DetailedLook";
 import { fetchLatestRelease, fetchAWS } from "@/utils";
 
 export default {
   name: "App",
   components: { Intro, DetailedLook },
   data() {
-    return { fiscal_year: null, data: null };
+    return { fiscalYear: null, data: null };
   },
   async created() {
     // Get latest fiscal year
     let config = await fetchLatestRelease();
-    this.fiscal_year = config.fiscal_year;
+    this.fiscalYear = config.fiscal_year;
 
     // Get the expenditure data
     this.data = await fetchAWS("controller-expenditures");
@@ -54,6 +37,30 @@ export default {
 #app {
   overflow-y: hidden !important;
 }
+.loader-wrapper {
+  display: flex;
+  justify-content: center;
+}
+.loader {
+  width: 48px;
+  height: 48px;
+  border: 5px solid #fff;
+  border-bottom-color: #2176d2;
+  border-radius: 50%;
+  display: inline-block;
+  box-sizing: border-box;
+  animation: rotation 1s linear infinite;
+}
+
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
 /* Shared styles */
 .card-footer {
   font-size: 14px;
