@@ -112,6 +112,7 @@ export default {
 .detailed-look-header {
   display: flex;
   flex-direction: row;
+  margin-left: 0.5rem;
 }
 
 .user-buttons,

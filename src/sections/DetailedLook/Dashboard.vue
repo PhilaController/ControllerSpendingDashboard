@@ -1,6 +1,6 @@
 <template>
   <!-- main section of charts -->
-  <div class="detailed-look-section">
+  <div class="detailed-look-section container">
     <!-- first row of charts -->
     <div class="row">
       <!-- Major Class Spending -->

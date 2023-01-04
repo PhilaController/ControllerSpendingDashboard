@@ -27,7 +27,7 @@ the page that is live on the production website.
 
 Install the dependencies:
 ```
-yarn install
+npm install
 ```
 ### Compiles and hot-reloads for development
 
