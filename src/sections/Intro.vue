@@ -12,17 +12,11 @@
       <p>
         In the spirit of fiscal transparency, the Controller's Office has
         committed to releasing its expenditures annually, including for
-        download. Below, the Controller’s Office provides information about
-        spending amounts, categories, and vendors for dates after January 1,
-        2018, when Controller Rebecca Rhynhart was sworn-in to office. The data
-        available here will be updated shortly after the close of each fiscal
-        year.
-      </p>
-      <p>
-        By default, the expenditure data for the most recent fiscal year,
+        download. The expenditure data below provides information about spending
+        amounts, categories, and vendors for the most recent fiscal year,
         ranging from July 1, {{ fiscalYear - 1 }} to June 30, {{ fiscalYear }},
-        is presented below. Earlier data can be viewed by using the buttons to
-        select the desired fiscal year.
+        by default. Earlier data can be viewed by using the buttons to select
+        the desired fiscal year.
       </p>
     </div>
 
@@ -43,8 +37,8 @@
         <li>
           The remaining spending comes from the Grants Fund. This spending is
           supported by the School District of Philadelphia, which reimburses the
-          Controller’s Office for its annual audit of the School District’s
-          finances.
+          Controller’s Office for the Audit Division’s performance of the School
+          District Single Audit.
         </li>
         <li>
           Expenditures in the Controller's Office are categorized into 4 major
